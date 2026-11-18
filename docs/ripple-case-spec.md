@@ -49,7 +49,13 @@ No screen or component imports the BLE library directly. Everything goes through
 - `BlePlxTransport`: the real implementation.
 
 The mock is chosen when `EXPO_PUBLIC_USE_MOCK_BLE=1` is set **or** when the native BLE module is
-missing (as in Expo Go). The app must never crash in Expo Go.
+missing (as in Expo Go, or on web). The app must never crash in Expo Go.
+
+App-side additions to the interface (they don't affect the firmware): `kind` (`'mock' | 'ble'`),
+`requestPermissions()`, `onAdapterStateChange()` for "Bluetooth is off", an optional `onError`
+for `scanForCases`, and `onHearingDeviceFound` passes `undefined` for the device when a
+scan-finished marker carries no device. The mock's hearing-device traffic goes through a fake
+firmware (`src/ble/mock/fakeFirmware.ts`) that speaks the real bytes below.
 
 ## Rule 2: byte encoding and decoding lives in one pure module
 
@@ -132,7 +138,8 @@ One notification for every `Command`.
 
 **Result and error codes:** 0 OK, 1 unknown opcode, 2 bad arguments, 3 busy, 4 nRF timeout,
 5 nRF error, 6 not connected to a hearing device, 7 unsupported protocol version.
-App-side only: 255 = no `Result` within 5 s (timeout).
+App-side only (never sent by firmware): 254 = the `Command` couldn't be written (case not
+connected or write failed), 255 = no `Result` within 5 s (timeout).
 
 **App rules for commands:**
 - Subscribe to `Result` before writing any `Command`.
