@@ -1,6 +1,6 @@
 /**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://unistyl.es/), etc.
+ * High-contrast palette and type scale for older users with hearing loss.
+ * Every status uses an icon + words as well as color, so color is never the only signal.
  */
 
 import '@/global.css';
@@ -10,17 +10,29 @@ import { Platform } from 'react-native';
 export const Colors = {
   light: {
     text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    textSecondary: '#3A3D42',
+    background: '#FFFFFF',
+    backgroundElement: '#F0F1F4',
+    backgroundSelected: '#DDE3EE',
+    border: '#5B6069',
+    primary: '#0B4FC2',
+    onPrimary: '#FFFFFF',
+    success: '#0A6B2E',
+    warning: '#8A4B00',
+    danger: '#B3121F',
   },
   dark: {
-    text: '#ffffff',
+    text: '#FFFFFF',
+    textSecondary: '#D2D5DA',
     background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+    backgroundElement: '#1C1D20',
+    backgroundSelected: '#2B3442',
+    border: '#9DA3AD',
+    primary: '#7FB0FF',
+    onPrimary: '#000000',
+    success: '#6EE59A',
+    warning: '#FFC266',
+    danger: '#FF8A8A',
   },
 } as const;
 
@@ -28,13 +40,9 @@ export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
 export const Fonts = Platform.select({
   ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
     sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
     serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
     rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
     mono: 'ui-monospace',
   },
   default: {
@@ -61,5 +69,6 @@ export const Spacing = {
   six: 64,
 } as const;
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
-export const MaxContentWidth = 800;
+/** Minimum height of anything tappable. */
+export const MinTapTarget = 64;
+export const MaxContentWidth = 640;
