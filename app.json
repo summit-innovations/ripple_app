@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "ripple-app",
+    "name": "Ripple",
     "slug": "ripple-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,8 @@
     "scheme": "rippleapp",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.ripple.caseapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -17,7 +18,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.ripple.caseapp"
     },
     "web": {
       "output": "server",
@@ -31,6 +33,15 @@
           "backgroundColor": "#208AEF",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
+        }
+      ],
+      [
+        "@sfourdrinier/react-native-ble-plx",
+        {
+          "isBackgroundEnabled": false,
+          "modes": [],
+          "neverForLocation": true,
+          "bluetoothAlwaysPermission": "Ripple uses Bluetooth to connect to your Ripple Case."
         }
       ]
     ],
