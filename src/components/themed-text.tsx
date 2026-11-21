@@ -1,6 +1,6 @@
 import { StyleSheet, Text, type TextProps } from 'react-native';
 
-import { ThemeColor } from '@/constants/theme';
+import { BrandFonts, ThemeColor } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 export type ThemedTextProps = TextProps & {
@@ -19,26 +19,26 @@ const styles = StyleSheet.create({
   small: {
     fontSize: 18,
     lineHeight: 26,
-    fontWeight: 500,
+    fontFamily: BrandFonts.body,
   },
   default: {
     fontSize: 20,
     lineHeight: 28,
-    fontWeight: 500,
+    fontFamily: BrandFonts.body,
   },
   label: {
     fontSize: 22,
     lineHeight: 30,
-    fontWeight: 700,
+    fontFamily: BrandFonts.heading,
   },
   subtitle: {
     fontSize: 26,
     lineHeight: 34,
-    fontWeight: 700,
+    fontFamily: BrandFonts.heading,
   },
   title: {
     fontSize: 34,
     lineHeight: 42,
-    fontWeight: 800,
+    fontFamily: BrandFonts.headingHeavy,
   },
 });

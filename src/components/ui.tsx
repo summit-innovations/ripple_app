@@ -8,7 +8,7 @@ import type { ReactNode } from 'react';
 import { ActivityIndicator, Platform, Pressable, StyleSheet, View, type ViewStyle } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
-import { MinTapTarget, Spacing, type ThemeColor } from '@/constants/theme';
+import { BrandFonts, MinTapTarget, Spacing, type ThemeColor } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { signalText } from '@/state/errors';
 
@@ -48,7 +48,7 @@ export function ToneIcon({ tone, size = 40 }: { tone: Tone; size?: number }) {
       {tone === 'busy' ? (
         <ActivityIndicator color={color} />
       ) : (
-        <ThemedText style={{ color, fontSize: size * 0.55, lineHeight: size * 0.7, fontWeight: 800 }}>
+        <ThemedText style={{ color, fontSize: size * 0.55, lineHeight: size * 0.7, fontFamily: BrandFonts.headingHeavy }}>
           {TONE_GLYPH[tone]}
         </ThemedText>
       )}
@@ -73,7 +73,7 @@ export function Button({
 }) {
   const theme = useTheme();
   const filled = variant === 'primary';
-  const fg = filled ? theme.onPrimary : variant === 'danger' ? theme.danger : theme.primary;
+  const fg = filled ? theme.onAccent : variant === 'danger' ? theme.danger : theme.primary;
   const inactive = disabled || busy;
   return (
     <Pressable
@@ -89,8 +89,9 @@ export function Button({
       style={({ pressed }) => [
         styles.button,
         {
-          backgroundColor: filled ? theme.primary : theme.background,
-          borderColor: filled ? theme.primary : fg,
+          // Lime fill with a dark edge so the button outline stays visible on the off-white page.
+          backgroundColor: filled ? theme.accent : theme.background,
+          borderColor: filled ? theme.text : fg,
           opacity: inactive ? 0.5 : pressed ? 0.75 : 1,
         },
       ]}>

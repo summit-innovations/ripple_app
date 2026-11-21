@@ -34,3 +34,24 @@ npx eas-cli@latest build --profile development --platform android
 Install the APK on a physical Android phone, then run `npx expo start` and open the project in
 the development build. See [docs/testing-without-hardware.md](docs/testing-without-hardware.md)
 for testing against a fake Ripple Case before the hardware exists.
+
+## Releasing to Google Play
+
+```bash
+npx eas-cli@latest build --platform android --profile production
+```
+
+The production profile builds an Android App Bundle (`.aab`) and bumps the version code
+automatically. Upload it in the Play Console (start with an internal or closed testing track).
+
+Store listing assets live in `assets/store/`:
+
+- `play-icon-512.png`: hi-res app icon (512×512)
+- `feature-graphic-1024x500.png`: feature graphic
+
+Privacy policy URL (required because the app uses Bluetooth): https://www.rippletech.store/privacy
+
+## Brand
+
+The logo source is `assets/brand/ripple-logo.svg`. Colors and fonts follow
+[rippletech.store](https://www.rippletech.store/) and live in `src/constants/theme.ts`.
