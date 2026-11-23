@@ -37,6 +37,8 @@ for testing against a fake Ripple Case before the hardware exists.
 
 ## Releasing to Google Play
 
+Step-by-step guide for the team: [docs/releasing-to-google-play.md](docs/releasing-to-google-play.md).
+
 ```bash
 npx eas-cli@latest build --platform android --profile production
 ```
